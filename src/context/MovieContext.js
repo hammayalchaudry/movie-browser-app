@@ -21,7 +21,8 @@ export const MovieProvider = ({ children }) => {
     if (!query.trim()) return;
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/movies?s=${query}`);
+      // Vercel deployment ke liye direct OMDb API URL use kiya hai
+      const res = await fetch(`https://www.omdbapi.com/?s=${query}&apikey=trilogy`);
       const data = await res.json();
       if (data.Search) {
         setMovies(data.Search);
